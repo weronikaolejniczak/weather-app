@@ -13,17 +13,17 @@ Hosted with GitHub Pages: [url]
 
 ### Stack
 
-- TypeScript - for ensuring type-safety and improving developer experience
-- React - for building the user interface in a scalable way
-- Vite - for buiding and serving the project; it has been bootstrapped with [react-ts](https://vite.new/react-ts) template
-- React Query - for handling requests
-- Tailwind CSS - for styling
-- shadcn/ui - for quick headless components
-- Zod - for validating endpoints schema
-- ESLint and Prettier - for ensuring clean, formatted code
-- Vitest, React Testing Library and MSW - for unit and integration tests
-- Playwright - for E2E tests
-- Storybook - for building and showcasing UI components
+- **[TypeScript](https://www.typescriptlang.org/)** - for ensuring type-safety and improving developer experience
+- **[React](https://react.dev/)** - for building the user interface in a scalable way
+- **[Vite](https://vitejs.dev/)** - for buiding and serving the project; it has been bootstrapped with [react-ts](https://vite.new/react-ts) template
+- **[React Query](https://tanstack.com/query/v3)** and **[Axios](https://github.com/axios/axios)** - for handling requests and client-side caching
+- **[Tailwind CSS](https://tailwindcss.com/)** - for styling
+- **[shadcn/ui](https://ui.shadcn.com/)** - for quick headless components
+- **[Zod](https://zod.dev/)** - for validating endpoints schema
+- **[ESLint](https://eslint.org/)** and **[Prettier](https://prettier.io/)** - for ensuring clean, formatted code
+- **[Vitest](https://vitest.dev/)**, **[React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)** and **[MSW](https://mswjs.io/)** - for unit and integration tests
+- **[Playwright](https://playwright.dev/)** - for E2E tests
+- **[Storybook](https://storybook.js.org/)** - for building and showcasing UI components
 
 ### Functionalities
 
@@ -42,6 +42,13 @@ Hosted with GitHub Pages: [url]
 - The project was built with a component-driven approach using Storybook.
 - Tests have been written following the TDD and BDD approach. GWT are written next to test cases.
 - I omitted routing because the app is simple enough but I structured the project in a way where it would be easy to add new pages.
+- I didn't configure the CI/CD pipeline to save on time but have extensive experience setting them up and so I would:
+  - Configure conventional commits and semantic releases
+  - Build the app (set as a PR check)
+  - Check linter and TypeScript (set as PR checks)
+  - Run unit and integration tests (set as PR checks)
+  - Deploy to a [AWS/GCP] bucket
+  - Cache dependencies to avoid redundant reinstalling
 
 ## How to run
 
