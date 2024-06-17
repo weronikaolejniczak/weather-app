@@ -2,8 +2,8 @@ pre-commit:
   parallel: true
   commands:
     eslint:
-      glob: '*.{ts,tsx}'
+      glob: 'src/*.{ts,tsx}'
       run: pnpm lint --fix {staged_files}
     prettier:
-      glob: '*'
+      glob: 'src/*'
       run: pnpm format --write {staged_files}
