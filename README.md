@@ -56,10 +56,12 @@ If you're having issues running the project, feel free to contact me at [wer.ole
 You need to add `.env` file with your free development API key from [openweathermap.org](https://openweathermap.org/):
 
 ```
-OPEN_WEATHER_MAP_API_KEY=""
+VITE_OPEN_WEATHER_MAP_API_KEY=""
 ```
 
-You can duplicate `.env-sample` file and rename the file to `.env`.
+You can duplicate `.env-sample` file and rename the file to `.env` or `.env.development`.
+
+You can read more about env in Vite [here](https://vitejs.dev/guide/env-and-mode).
 
 ### Run development server
 
