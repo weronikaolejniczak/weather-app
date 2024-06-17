@@ -41,6 +41,7 @@ Hosted with GitHub Pages: [url]
 - Errors have been handled in a meaningful way, considering the API documentation.
 - The project was built with a component-driven approach using Storybook.
 - Tests have been written following the TDD and BDD approach. GWT are written next to test cases.
+- I omitted routing because the app is simple enough but I structured the project in a way where it would be easy to add new pages.
 
 ## How to run
 
