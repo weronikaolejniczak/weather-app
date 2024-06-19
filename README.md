@@ -75,10 +75,13 @@ You can read more about env in Vite [here](https://vitejs.dev/guide/env-and-mode
 1. First, install dependencies: `pnpm install`
 2. Next, write in the terminal: `pnpm dev`
 3. Access http://localhost:5173/.
+4. Et voila! 🎉
 
 ### Run unit and integration tests
 
-1. WIP
+1. First, install dependencies: `pnpm install`
+2. Next, write in the terminal: `pnpm test`
+3. Et voila! 🎉
 
 ### Run E2E tests
 
