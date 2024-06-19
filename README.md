@@ -89,4 +89,7 @@ You can read more about env in Vite [here](https://vitejs.dev/guide/env-and-mode
 
 ### Run Storybook
 
-1. WIP
+1. First, install dependencies: `pnpm install`
+2. Next, write in the terminal: `pnpm storybook`
+3. Access http://localhost:6006/.
+4. Et voila! 🎉
