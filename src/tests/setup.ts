@@ -2,7 +2,7 @@ import { expect, afterEach, afterAll, beforeAll } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 
-import { server } from '../mocks/node';
+import { server } from '@/mocks/node';
 
 expect.extend(matchers);
 

@@ -2,8 +2,8 @@ import { describe, expect, test } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { App } from '../app';
-import { SAVED_CITIES_KEY } from '../constants';
+import { App } from '@/app';
+import { SAVED_CITIES_KEY } from '@/constants';
 
 describe('Dashboard', () => {
   /**

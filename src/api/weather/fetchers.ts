@@ -1,8 +1,8 @@
 import axios from 'axios';
 
+import { Endpoint } from '../endpoints';
 import { Unit } from './types';
 import { weatherSchema } from './schemas';
-import { Endpoint } from '../endpoints';
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
 const DEFAULT_UNIT: Unit = Unit.metric;

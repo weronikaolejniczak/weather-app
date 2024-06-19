@@ -1,10 +1,10 @@
 import { http, HttpResponse } from 'msw';
 
-import { Endpoint } from '../api/endpoints';
-import successBarcelona from '../mocks/weather/success-response-barcelona.json';
-import successParis from '../mocks/weather/success-response-paris.json';
-import successWarsaw from '../mocks/weather/success-response-warsaw.json';
-import errorResponse404 from '../mocks/weather/error-response-404.json';
+import { Endpoint } from '@/api/endpoints';
+import successBarcelona from '@/mocks/weather/success-response-barcelona.json';
+import successParis from '@/mocks/weather/success-response-paris.json';
+import successWarsaw from '@/mocks/weather/success-response-warsaw.json';
+import errorResponse404 from '@/mocks/weather/error-response-404.json';
 
 const MOCKS = {
   Barcelona: successBarcelona,

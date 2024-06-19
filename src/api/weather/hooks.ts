@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 
+import { usePersistentState } from '@/hooks/use-persistent-state';
+import { SAVED_CITIES_KEY } from '@/constants';
+
 import { fetchWeather } from './fetchers';
-import { useState } from 'react';
 import { Weather } from './types';
-import { usePersistentState } from '../../hooks/use-persistent-state';
-import { SAVED_CITIES_KEY } from '../../constants';
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
 

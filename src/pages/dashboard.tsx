@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 
-import { useWeather } from '../api/weather';
-import { useDebounce } from '../hooks/use-debounce';
-import { useInput } from '../hooks/use-input';
-import { formatDate } from '../utils/format-date';
+import { useWeather } from '@/api/weather';
+import { useDebounce } from '@/hooks/use-debounce';
+import { useInput } from '@/hooks/use-input';
+import { formatDate } from '@/utils/format-date';
 
 const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
