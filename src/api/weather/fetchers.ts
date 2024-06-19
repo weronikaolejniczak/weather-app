@@ -2,14 +2,13 @@ import axios from 'axios';
 
 import { Unit } from './types';
 import { weatherSchema } from './schemas';
+import { Endpoint } from '../endpoints';
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
 const DEFAULT_UNIT: Unit = Unit.metric;
-const OPEN_WEATHER_MAP_VERSION = '2.5';
-const OPEN_WEATHER_MAP_URI = `https://api.openweathermap.org/data/${OPEN_WEATHER_MAP_VERSION}/weather`;
 
 export const fetchWeather = async (city: string) => {
-  const response = await axios.get(OPEN_WEATHER_MAP_URI, {
+  const response = await axios.get(Endpoint.weather, {
     params: {
       q: city,
       appid: API_KEY,
