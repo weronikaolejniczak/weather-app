@@ -19,8 +19,10 @@ export const useWeather = (city: string) => {
   );
 
   const saveInLocalStorage = () => {
-    !savedCities.includes(city) &&
-      setSavedCities((cities) => [...cities, city]);
+    const formattedCity = city.trim().toLowerCase();
+
+    !savedCities.includes(formattedCity) &&
+      setSavedCities((cities) => [...cities, formattedCity]);
   };
 
   const query = useQuery({
