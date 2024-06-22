@@ -14,6 +14,7 @@ import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
 import DropIcon from '@/assets/icons/drop.svg?react';
 import WindIcon from '@/assets/icons/wind.svg?react';
+import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 
 const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
@@ -63,7 +64,8 @@ export const Dashboard = () => {
       </div>
       <div className="w-full flex justify-center gap-4">
         {weather && (
-          <div>
+          <div className="flex items-center">
+            <span>{getWeatherConditionData(weather.weather[0].icon).icon}</span>
             <span className="text-6xl tracking-tight">
               {Math.floor(weather.main.temp)}°
             </span>
@@ -123,9 +125,10 @@ export const Dashboard = () => {
         {!!forecast?.list.length &&
           forecast?.list.map(({ dt_txt, weather, main }) => (
             <div key={dt_txt} className="py-1 px-2 flex gap-4 items-center">
+              <span>{getWeatherConditionData(weather[0].icon).icon}</span>
               <div className="flex flex-col flex-1">
                 <span className="text-lg">{formatHour(new Date(dt_txt))}</span>
-                <span className="text-lg">{weather[0].main}</span>
+                <span className="text-lg">{weather[0].description}</span>
               </div>
               <div className="text-2xl">
                 {Math.floor(main.temp)}°<span className="text-lg">C</span>
