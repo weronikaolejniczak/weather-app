@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 
 import { useWeather } from '@/api/weather';
+import { useForecast } from '@/api/forecast';
 import { useDebounce } from '@/hooks/use-debounce';
 import { useInput } from '@/hooks/use-input';
 import { formatDate } from '@/utils/format-date';
+import { formatHour } from '@/utils/format-hour';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Logo } from '@/components/ui/logo';
-
 import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
 import DropIcon from '@/assets/icons/drop.svg?react';
@@ -24,6 +25,7 @@ export const Dashboard = () => {
 
   const debouncedQuery = useDebounce(searchQuery, SEARCH_DEBOUNCE_VALUE);
   const { weather, savedQueries, error, isError } = useWeather(debouncedQuery);
+  const { forecast } = useForecast(debouncedQuery);
 
   const autofillOptions = useMemo(() => {
     const formattedQuery = debouncedQuery.trim().toLowerCase();
@@ -118,6 +120,18 @@ export const Dashboard = () => {
           </div>
         )}
         <Separator />
+        {!!forecast?.list.length &&
+          forecast?.list.map(({ dt_txt, weather, main }) => (
+            <div key={dt_txt} className="py-1 px-2 flex gap-4 items-center">
+              <div className="flex flex-col flex-1">
+                <span className="text-lg">{formatHour(new Date(dt_txt))}</span>
+                <span className="text-lg">{weather[0].main}</span>
+              </div>
+              <div className="text-2xl">
+                {Math.floor(main.temp)}°<span className="text-lg">C</span>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
