@@ -69,6 +69,9 @@ module.exports = {
       spacing: {
         128: '27.5rem',
       },
+      backgroundImage: {
+        placeholder: "url('/assets/backdrops/placeholder.jpg')",
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

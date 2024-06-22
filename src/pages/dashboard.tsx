@@ -18,8 +18,6 @@ import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 
 const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
-const IMAGE_PLACEHOLDER =
-  'https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?q=80&w=1942&auto=format&fit=crop';
 
 export const Dashboard = () => {
   const [searchQuery, handleSearchQueryChange] = useInput(DEFAULT_SEARCH_QUERY);
@@ -36,7 +34,7 @@ export const Dashboard = () => {
 
   return (
     <div
-      className={`min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-[url('${IMAGE_PLACEHOLDER}')]`}
+      className={`min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-placeholder bg-fixed`}
     >
       <div className="flex flex-col items-center gap-8">
         <Logo />
