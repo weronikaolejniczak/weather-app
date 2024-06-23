@@ -69,7 +69,7 @@ export const Dashboard = () => {
       )}
     >
       <div className="flex flex-col gap-8">
-        <Logo />
+        <Logo className="self-center" />
         <Combobox>
           <Combobox.Label htmlFor="search-input" srOnly>
             Enter city
