@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 
 import { useForecast } from '@/api/forecast';
 import { useWeather } from '@/api/weather';
@@ -26,18 +26,26 @@ const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
 
 export const Dashboard = () => {
-  const { toast } = useToast();
+  const toastId = useRef<string>('');
+
+  const { dismiss, toast } = useToast();
+
   const [searchQuery, handleSearchQueryChange, setSearchQuery] =
     useInput(DEFAULT_SEARCH_QUERY);
 
   const debouncedQuery = useDebounce(searchQuery, SEARCH_DEBOUNCE_VALUE);
   const { weather, savedQueries } = useWeather(debouncedQuery, {
-    onError: (error) =>
-      toast({
+    onError: (error) => {
+      const { id } = toast({
         title: 'Ooops, something went wrong!',
         description: error.message,
         variant: 'destructive',
-      }),
+      });
+      toastId.current = id;
+    },
+    onSuccess: () => {
+      dismiss(toastId.current);
+    },
   });
   const { forecast } = useForecast(debouncedQuery);
 

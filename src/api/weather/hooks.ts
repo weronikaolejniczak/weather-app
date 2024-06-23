@@ -24,9 +24,10 @@ const isWeatherError = (error: unknown): error is WeatherError => {
 
 interface Options {
   onError: (error: WeatherError) => void;
+  onSuccess: () => void;
 }
 
-export const useWeather = (city: string, { onError }: Options) => {
+export const useWeather = (city: string, { onError, onSuccess }: Options) => {
   const [savedCities, setSavedCities] = usePersistentState<string[]>(
     SAVED_CITIES_KEY,
     [],
@@ -49,6 +50,7 @@ export const useWeather = (city: string, { onError }: Options) => {
     onSuccess: (data) => {
       setLastSuccessfulData(data);
       saveInLocalStorage();
+      onSuccess();
     },
     onError: (error) => {
       if (isAxiosError(error) && isWeatherError(error.response?.data)) {
