@@ -20,6 +20,7 @@ import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
 import DropIcon from '@/assets/icons/drop.svg?react';
 import WindIcon from '@/assets/icons/wind.svg?react';
+import { cn } from '@/utils/cn';
 
 const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
@@ -47,12 +48,17 @@ export const Dashboard = () => {
 
   return (
     <div
-      className={`min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-placeholder bg-fixed`}
+      className={cn(
+        'min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-fixed',
+        'bg-placeholder',
+      )}
     >
       <div className="flex flex-col items-center gap-8">
         <Logo />
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="search-input">Enter city</Label>
+          <Label className="sr-only" htmlFor="search-input">
+            Enter city
+          </Label>
           <Input
             id="search-input"
             list="cities"
