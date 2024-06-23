@@ -18,6 +18,7 @@ import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
 
 import DropIcon from '@/assets/icons/drop.svg?react';
+import MagnifierIcon from '@/assets/icons/magnifier.svg?react';
 import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
 import WindIcon from '@/assets/icons/wind.svg?react';
@@ -80,6 +81,7 @@ export const Dashboard = () => {
             className="w-full"
             onChange={handleSearchQueryChange}
             value={searchQuery}
+            icon={<MagnifierIcon />}
           />
           {autofillOptions.length > 0 && (
             <Combobox.List id="cities" label="Previous city searches">
