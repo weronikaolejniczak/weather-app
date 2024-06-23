@@ -22,7 +22,6 @@ Hosted with GitHub Pages: [url]
 - **[Zod](https://zod.dev/)** - for validating endpoints schema
 - **[ESLint](https://eslint.org/)** and **[Prettier](https://prettier.io/)** - for ensuring clean, formatted code
 - **[Vitest](https://vitest.dev/)**, **[React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)** and **[MSW](https://mswjs.io/)** - for unit and integration tests
-- **[Playwright](https://playwright.dev/)** - for E2E tests
 - **[Storybook](https://storybook.js.org/)** - for building and showcasing UI components
 
 ### Functionalities
@@ -37,7 +36,7 @@ Hosted with GitHub Pages: [url]
 
 - The app is **responsive** on the desktop, tablet and mobile devices.
 - The app is **accessible**, all interactive elements are announced by the screen reader correctly and the app is traversable by the keyboard.
-- The app is **pixel-perfect**, styled according to the provided Figma.
+- The app is (almost) **pixel-perfect**, styled according to the provided Figma.
 - Errors have been handled in a meaningful way, considering the API documentation.
 - The project was built with a component-driven approach using Storybook.
 - Tests have been written following the TDD and BDD approach. GWT are written next to test cases.
@@ -49,6 +48,12 @@ Hosted with GitHub Pages: [url]
   - Run unit and integration tests (set as PR checks)
   - Deploy to a [AWS/GCP] bucket
   - Cache dependencies to avoid redundant reinstalling
+
+### Possible iterations
+
+- I fetch the main weather data from the endpoint mentioned in the requirements: `https://api.openweathermap.org/data/2.5/weather` which doesn't return a forecast. So I call another endpoint to get it (3-hour for 5 days; hourly forecast is a Pro feature of OpenWeatherMap): `https://api.openweathermap.org/data/2.5/forecast`. In normal circumstances, I would negotiate using only the `/forecast` endpoint to show all data but for the recruitment challenge I preferred to follow the requirements.
+- E2E tests using Cypress, Playwright. For this application, especially since I do not own the back-end, unit and integration tests with mocked endpoints are enough.
+- I tried to follow Figma as closely as possible with some exceptions in responsitivity (like the sticky header on mobile) to save on time. I focused on implementing more functionalities over implementing them in detail to showcase versatility. In real circumstances or if I had more time, I would go for a pixel-perfect design.
 
 ## How to run
 
@@ -82,10 +87,6 @@ You can read more about env in Vite [here](https://vitejs.dev/guide/env-and-mode
 1. First, install dependencies: `pnpm install`
 2. Next, write in the terminal: `pnpm test`
 3. Et voila! 🎉
-
-### Run E2E tests
-
-1. WIP
 
 ### Run Storybook
 
