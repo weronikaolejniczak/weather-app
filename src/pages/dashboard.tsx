@@ -18,6 +18,7 @@ import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
 
 import DropIcon from '@/assets/icons/drop.svg?react';
+import LoadingSpinner from '@/assets/icons/loading-spinner.svg?react';
 import MagnifierIcon from '@/assets/icons/magnifier.svg?react';
 import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
@@ -35,7 +36,7 @@ export const Dashboard = () => {
     useInput(DEFAULT_SEARCH_QUERY);
 
   const debouncedQuery = useDebounce(searchQuery, SEARCH_DEBOUNCE_VALUE);
-  const { weather, savedQueries } = useWeather(debouncedQuery, {
+  const { weather, savedQueries, isLoading } = useWeather(debouncedQuery, {
     onError: (error) => {
       const { id } = toast({
         title: 'Ooops, something went wrong!',
@@ -81,13 +82,22 @@ export const Dashboard = () => {
             className="w-full"
             onChange={handleSearchQueryChange}
             value={searchQuery}
-            icon={<MagnifierIcon />}
+            icon={
+              isLoading ? (
+                <LoadingSpinner
+                  className="animate-spin"
+                  width="32"
+                  height="32"
+                />
+              ) : (
+                <MagnifierIcon />
+              )
+            }
           />
           {autofillOptions.length > 0 && (
             <Combobox.List id="cities" label="Previous city searches">
               {autofillOptions.map((option) => {
                 const value = capitalizeWords(option);
-
                 return (
                   <Combobox.Option
                     key={option}
