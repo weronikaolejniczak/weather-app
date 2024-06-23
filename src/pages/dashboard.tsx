@@ -1,33 +1,34 @@
 import { useMemo } from 'react';
 
-import { useWeather } from '@/api/weather';
 import { useForecast } from '@/api/forecast';
+import { useWeather } from '@/api/weather';
 
 import { useDebounce } from '@/hooks/use-debounce';
 import { useInput } from '@/hooks/use-input';
 
+import { capitalizeWords } from '@/utils/capitalize-words';
+import { cn } from '@/utils/cn';
 import { formatDate } from '@/utils/format-date';
 import { formatHour } from '@/utils/format-hour';
 import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
+import { Combobox } from '@/components/ui/combobox';
 import { Logo } from '@/components/ui/logo';
+import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
 
+import DropIcon from '@/assets/icons/drop.svg?react';
 import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
-import DropIcon from '@/assets/icons/drop.svg?react';
 import WindIcon from '@/assets/icons/wind.svg?react';
-import { cn } from '@/utils/cn';
 
 const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
 
 export const Dashboard = () => {
   const { toast } = useToast();
-  const [searchQuery, handleSearchQueryChange] = useInput(DEFAULT_SEARCH_QUERY);
+  const [searchQuery, handleSearchQueryChange, setSearchQuery] =
+    useInput(DEFAULT_SEARCH_QUERY);
 
   const debouncedQuery = useDebounce(searchQuery, SEARCH_DEBOUNCE_VALUE);
   const { weather, savedQueries } = useWeather(debouncedQuery, {
@@ -46,6 +47,11 @@ export const Dashboard = () => {
     return savedQueries.filter((query) => query !== formattedQuery);
   }, [debouncedQuery, savedQueries]);
 
+  const weatherConditions = useMemo(() => {
+    if (!weather) return null;
+    return getWeatherConditionData(weather.weather[0].icon);
+  }, [weather]);
+
   return (
     <div
       className={cn(
@@ -53,33 +59,43 @@ export const Dashboard = () => {
         'bg-placeholder',
       )}
     >
-      <div className="flex flex-col items-center gap-8">
+      <div className="flex flex-col gap-8">
         <Logo />
-        <div className="grid w-full items-center gap-1.5">
-          <Label className="sr-only" htmlFor="search-input">
+        <Combobox>
+          <Combobox.Label htmlFor="search-input" srOnly>
             Enter city
-          </Label>
-          <Input
+          </Combobox.Label>
+          <Combobox.Input
             id="search-input"
-            list="cities"
+            type="text"
+            name="search-input"
+            className="w-full"
             onChange={handleSearchQueryChange}
             value={searchQuery}
           />
           {autofillOptions.length > 0 && (
-            <ul>
-              {autofillOptions.map((option) => (
-                <li key={option} value={option}>
-                  {option}
-                </li>
-              ))}
-            </ul>
+            <Combobox.List id="cities" label="Previous city searches">
+              {autofillOptions.map((option) => {
+                const value = capitalizeWords(option);
+
+                return (
+                  <Combobox.Option
+                    key={option}
+                    value={value}
+                    onClick={() => setSearchQuery(value)}
+                  >
+                    {value}
+                  </Combobox.Option>
+                );
+              })}
+            </Combobox.List>
           )}
-        </div>
+        </Combobox>
       </div>
       <div className="w-full flex justify-center gap-4">
         {weather && (
           <div className="flex items-center">
-            <span>{getWeatherConditionData(weather.weather[0].icon).icon}</span>
+            {weatherConditions && <span>{weatherConditions.icon}</span>}
             <span className="text-6xl tracking-tight">
               {Math.floor(weather.main.temp)}°
             </span>

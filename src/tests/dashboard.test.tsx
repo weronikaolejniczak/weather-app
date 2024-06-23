@@ -1,4 +1,12 @@
-import { describe, expect, test } from 'vitest';
+import {
+  afterAll,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -6,6 +14,21 @@ import { App } from '@/app';
 import { SAVED_CITIES_KEY } from '@/constants';
 
 describe('Dashboard', () => {
+  beforeEach(() => {
+    vi.spyOn(global.Storage.prototype, 'setItem');
+    vi.spyOn(global.Storage.prototype, 'getItem');
+    vi.spyOn(global.Storage.prototype, 'removeItem');
+    vi.spyOn(global.Storage.prototype, 'clear');
+  });
+
+  afterEach(() => {
+    localStorage.clear();
+  });
+
+  afterAll(() => {
+    vi.restoreAllMocks();
+  });
+
   /**
    * GIVEN I am on the dashboard
    * WHEN I enter an existing city in the search input
@@ -43,7 +66,7 @@ describe('Dashboard', () => {
     userEvent.clear(searchInput);
     userEvent.type(searchInput, 'A non-existing city');
 
-    const toast = await screen.findByText("This city doesn't exist!");
+    const toast = await screen.findByText('city not found');
 
     expect(barcelonaTitle).toBeInTheDocument();
     expect(toast).toBeInTheDocument();
@@ -62,7 +85,9 @@ describe('Dashboard', () => {
 
     userEvent.click(searchInput);
 
-    const dropdown = screen.queryByRole('menu', { name: /cities/i });
+    const dropdown = screen.queryByRole('listbox', {
+      name: /previous city searches/i,
+    });
 
     expect(dropdown).not.toBeInTheDocument();
   });
@@ -74,22 +99,24 @@ describe('Dashboard', () => {
    * THEN I will see a list of autocomplete suggestions with the city names I have entered before
    */
   test('WHEN I focus the search input THEN I will see a list of autocomplete suggestions with the city names I have entered before', async () => {
-    render(<App />);
+    localStorage.setItem(SAVED_CITIES_KEY, `["barcelona", "paris", "warsaw"]`);
 
-    localStorage.setItem(SAVED_CITIES_KEY, "['Barcelona', 'Paris', 'Warsaw']");
+    render(<App />);
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
 
     userEvent.click(searchInput);
 
-    const dropdown = await screen.findByRole('menu', { name: /cities/i });
-    const barcelonaItem = within(dropdown).queryByRole('menuitem', {
+    const dropdown = await screen.findByRole('listbox', {
+      name: /previous city searches/i,
+    });
+    const barcelonaItem = within(dropdown).queryByRole('option', {
       name: /barcelona/i,
     });
-    const parisItem = await within(dropdown).findByRole('menuitem', {
+    const parisItem = await within(dropdown).findByRole('option', {
       name: /paris/i,
     });
-    const warsawItem = await within(dropdown).findByRole('menuitem', {
+    const warsawItem = await within(dropdown).findByRole('option', {
       name: /warsaw/i,
     });
 
@@ -107,16 +134,18 @@ describe('Dashboard', () => {
    * THEN I will see the correct information about that city
    */
   test('WHEN I focus the search input AND I click on an item from the autocomplete suggestions THEN I will see the correct information about that city', async () => {
-    render(<App />);
+    localStorage.setItem(SAVED_CITIES_KEY, `["paris", "warsaw"]`);
 
-    localStorage.setItem(SAVED_CITIES_KEY, "['Paris', 'Warsaw']");
+    render(<App />);
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
 
     userEvent.click(searchInput);
 
-    const dropdown = await screen.findByRole('menu', { name: /cities/i });
-    const parisItem = await within(dropdown).findByRole('menuitem', {
+    const dropdown = await screen.findByRole('listbox', {
+      name: /previous city searches/i,
+    });
+    const parisItem = await within(dropdown).findByRole('option', {
       name: /paris/i,
     });
 
