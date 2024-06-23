@@ -2,28 +2,41 @@ import { useMemo } from 'react';
 
 import { useWeather } from '@/api/weather';
 import { useForecast } from '@/api/forecast';
+
 import { useDebounce } from '@/hooks/use-debounce';
 import { useInput } from '@/hooks/use-input';
+
 import { formatDate } from '@/utils/format-date';
 import { formatHour } from '@/utils/format-hour';
+import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Logo } from '@/components/ui/logo';
+import { useToast } from '@/components/ui/use-toast';
+
 import TempMaxIcon from '@/assets/icons/temp-max.svg?react';
 import TempMinIcon from '@/assets/icons/temp-min.svg?react';
 import DropIcon from '@/assets/icons/drop.svg?react';
 import WindIcon from '@/assets/icons/wind.svg?react';
-import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 
 const DEFAULT_SEARCH_QUERY = 'Barcelona';
 const SEARCH_DEBOUNCE_VALUE = 500;
 
 export const Dashboard = () => {
+  const { toast } = useToast();
   const [searchQuery, handleSearchQueryChange] = useInput(DEFAULT_SEARCH_QUERY);
 
   const debouncedQuery = useDebounce(searchQuery, SEARCH_DEBOUNCE_VALUE);
-  const { weather, savedQueries, error, isError } = useWeather(debouncedQuery);
+  const { weather, savedQueries } = useWeather(debouncedQuery, {
+    onError: (error) =>
+      toast({
+        title: 'Ooops, something went wrong!',
+        description: error.message,
+        variant: 'destructive',
+      }),
+  });
   const { forecast } = useForecast(debouncedQuery);
 
   const autofillOptions = useMemo(() => {
@@ -54,9 +67,6 @@ export const Dashboard = () => {
                 </li>
               ))}
             </ul>
-          )}
-          {isError && error?.response.status === 404 && (
-            <span>This city doesn't exist!</span>
           )}
         </div>
       </div>

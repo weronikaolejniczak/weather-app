@@ -6,10 +6,27 @@ import { SAVED_CITIES_KEY } from '@/constants';
 
 import { fetchWeather } from './fetchers';
 import { Weather } from './types';
+import { isAxiosError } from 'axios';
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
 
-export const useWeather = (city: string) => {
+interface WeatherError {
+  cod: string;
+  message: string;
+}
+
+const isWeatherError = (error: unknown): error is WeatherError => {
+  if (typeof error === 'object' && error !== null) {
+    return 'cod' in error && 'message' in error;
+  }
+  return false;
+};
+
+interface Options {
+  onError: (error: WeatherError) => void;
+}
+
+export const useWeather = (city: string, { onError }: Options) => {
   const [savedCities, setSavedCities] = usePersistentState<string[]>(
     SAVED_CITIES_KEY,
     [],
@@ -33,7 +50,11 @@ export const useWeather = (city: string) => {
       setLastSuccessfulData(data);
       saveInLocalStorage();
     },
-    onError: (error) => console.error(error),
+    onError: (error) => {
+      if (isAxiosError(error) && isWeatherError(error.response?.data)) {
+        onError(error.response.data);
+      }
+    },
   });
 
   return {
