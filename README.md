@@ -3,11 +3,9 @@
 This is a repository for the Weather Dashboard app that allows users to search for the current weather conditions of any city.
 The app fetches the data from a public weather API and displays it in a user-friendly manner.
 
-A front-end engineering assignment for the recruitment process at Knack.
+[Hosted with Vercel](https://weather-app-lake-ten-91.vercel.app/)
 
-[img]
-
-Hosted with GitHub Pages: [url]
+![Collage](demo\readme-collage.png)
 
 ## Overview
 
