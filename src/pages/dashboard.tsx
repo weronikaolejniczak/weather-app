@@ -71,74 +71,78 @@ export const Dashboard = () => {
   return (
     <div
       className={cn(
-        'flex min-h-screen w-full flex-col gap-12 bg-cover bg-fixed bg-center bg-no-repeat px-6 pt-6',
+        'flex min-h-screen w-full flex-col justify-center lg:flex-row gap-12 lg:gap-24 lg:px-12 lg:pt-12 bg-cover bg-fixed bg-center bg-no-repeat px-6 pt-6',
         weatherConditions?.backdrop[theme],
       )}
     >
-      <div className="flex flex-col gap-8">
-        <div className="flex w-full items-center justify-center">
-          <Logo className="m-auto" />
-          <ThemeToggle value={theme} onClick={toggleTheme} />
-        </div>
-        <Combobox>
-          <Combobox.Label htmlFor="search-input" srOnly>
-            Enter city
-          </Combobox.Label>
-          <Combobox.Input
-            id="search-input"
-            type="text"
-            name="search-input"
-            className="w-full"
-            onChange={handleSearchQueryChange}
-            value={searchQuery}
-            icon={
-              isLoading ? (
-                <LoadingSpinner
-                  className="animate-spin"
-                  width="32"
-                  height="32"
-                />
-              ) : (
-                <MagnifierIcon />
-              )
-            }
-          />
-          {autofillOptions.length > 0 && (
-            <Combobox.List id="cities" label="Previous city searches">
-              {autofillOptions.map((option) => {
-                const value = capitalizeWords(option);
-                return (
-                  <Combobox.Option
-                    key={option}
-                    value={value}
-                    onClick={() => setSearchQuery(value)}
-                  >
-                    {value}
-                  </Combobox.Option>
-                );
-              })}
-            </Combobox.List>
-          )}
-        </Combobox>
-      </div>
-      <div className="flex w-full justify-center gap-4">
-        {weather && (
-          <div className="flex items-center">
-            {weatherConditions && <span>{weatherConditions.icon}</span>}
-            <span className="text-6xl tracking-tight">
-              {Math.floor(weather.main.temp)}°
-            </span>
-            <span className="text-3xl">C</span>
+      <header className="flex flex-col grow lg:max-w-2xl gap-12 lg:mt-24">
+        <div className="flex flex-col gap-8">
+          <div className="flex w-full items-center justify-center">
+            <Logo className="m-auto" />
+            <ThemeToggle value={theme} onClick={toggleTheme} />
           </div>
-        )}
-        <div className="flex flex-col gap-1 pl-4">
-          <h1 className="text-3xl">{weather?.name}</h1>
-          <span className="text-sm">
-            {weather?.dt && <p>{formatDate(new Date(weather?.dt))}</p>}
-          </span>
+          <Combobox>
+            <Combobox.Label htmlFor="search-input" srOnly>
+              Enter city
+            </Combobox.Label>
+            <Combobox.Input
+              id="search-input"
+              type="text"
+              name="search-input"
+              className="w-full"
+              onChange={handleSearchQueryChange}
+              value={searchQuery}
+              icon={
+                isLoading ? (
+                  <LoadingSpinner
+                    className="animate-spin"
+                    width="32"
+                    height="32"
+                  />
+                ) : (
+                  <MagnifierIcon />
+                )
+              }
+            />
+            {autofillOptions.length > 0 && (
+              <Combobox.List id="cities" label="Previous city searches">
+                {autofillOptions.map((option) => {
+                  const value = capitalizeWords(option);
+                  return (
+                    <Combobox.Option
+                      key={option}
+                      value={value}
+                      onClick={() => setSearchQuery(value)}
+                    >
+                      {value}
+                    </Combobox.Option>
+                  );
+                })}
+              </Combobox.List>
+            )}
+          </Combobox>
         </div>
-      </div>
-      <div className="flex w-full flex-1 flex-col gap-6 rounded-t-lg bg-white bg-opacity-20 p-4 backdrop-blur-2xl dark:bg-black dark:bg-opacity-20">
+        <div className="flex w-full items-center justify-center gap-4">
+          {weather && (
+            <div className="flex items-center lg:gap-4">
+              {weatherConditions && (
+                <span className="lg:scale-150">{weatherConditions.icon}</span>
+              )}
+              <span className="text-6xl lg:text-9xl tracking-tight">
+                {Math.floor(weather.main.temp)}°
+              </span>
+              <span className="text-3xl lg:text-6xl">C</span>
+            </div>
+          )}
+          <div className="flex flex-col gap-1 pl-4 lg:gap-2">
+            <h1 className="text-3xl lg:text-6xl">{weather?.name}</h1>
+            <span className="text-sm lg:text-lg">
+              {weather?.dt && <p>{formatDate(new Date(weather?.dt))}</p>}
+            </span>
+          </div>
+        </div>
+      </header>
+      <div className="flex w-full flex-1 flex-col gap-6 min-w-80 lg:max-w-xl rounded-t-lg bg-white bg-opacity-20 p-4 backdrop-blur-2xl dark:bg-black dark:bg-opacity-20">
         {weather && (
           <div className="flex flex-col gap-6">
             <h3 className="self-center text-base font-medium uppercase">
