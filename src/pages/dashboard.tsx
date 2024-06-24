@@ -46,7 +46,8 @@ export const Dashboard = () => {
     onError: (error) => {
       const { id } = toast({
         title: 'Ooops, something went wrong!',
-        description: error.message,
+        description:
+          error.cod === '404' ? "This city doesn't exist!" : error.message,
         variant: 'destructive',
       });
       toastId.current = id;
