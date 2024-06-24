@@ -1,14 +1,14 @@
 import { WeatherConditionCode } from '@/api/types';
 
+import BrokenCloudsIcon from '@/assets/icons/broken-clouds.svg?react';
 import ClearSkyIcon from '@/assets/icons/clear-sky.svg?react';
 import FewCloudsIcon from '@/assets/icons/few-clouds.svg?react';
-import ScatteredCloudsIcon from '@/assets/icons/scattered-clouds.svg?react';
-import BrokenCloudsIcon from '@/assets/icons/broken-clouds.svg?react';
-import ShowerRainIcon from '@/assets/icons/shower-rain.svg?react';
-import RainIcon from '@/assets/icons/rain.svg?react';
-import ThunderstormIcon from '@/assets/icons/thunderstorm.svg?react';
-import SnowIcon from '@/assets/icons/snow.svg?react';
 import MistIcon from '@/assets/icons/mist.svg?react';
+import RainIcon from '@/assets/icons/rain.svg?react';
+import ScatteredCloudsIcon from '@/assets/icons/scattered-clouds.svg?react';
+import ShowerRainIcon from '@/assets/icons/shower-rain.svg?react';
+import SnowIcon from '@/assets/icons/snow.svg?react';
+import ThunderstormIcon from '@/assets/icons/thunderstorm.svg?react';
 
 const WEATHER_CONDIITON_MAP = {
   [WeatherConditionCode.ClearSky]: {

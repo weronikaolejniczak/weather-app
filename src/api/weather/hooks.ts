@@ -1,12 +1,14 @@
 import { useState } from 'react';
+
+import { isAxiosError } from 'axios';
 import { useQuery } from 'react-query';
 
-import { usePersistentState } from '@/hooks/use-persistent-state';
 import { SAVED_CITIES_KEY } from '@/constants';
+
+import { usePersistentState } from '@/hooks/use-persistent-state';
 
 import { fetchWeather } from './fetchers';
 import { Weather } from './types';
-import { isAxiosError } from 'axios';
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;
 

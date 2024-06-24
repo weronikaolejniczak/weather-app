@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 
 import { Theme } from '@/constants/theme';
 
-import { usePersistentState } from './use-persistent-state';
 import { useMatchMedia } from './use-media-query';
+import { usePersistentState } from './use-persistent-state';
 
 const THEME_PREFERENCE_KEY = 'theme';
 

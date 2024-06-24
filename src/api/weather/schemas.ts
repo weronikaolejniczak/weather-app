@@ -1,12 +1,13 @@
 import { z } from 'zod';
+
 import {
-  coordSchema,
-  weatherDescriptionSchema,
-  mainSchema,
-  windSchema,
   cloudsSchema,
+  coordSchema,
+  mainSchema,
   rainSchema,
   snowSchema,
+  weatherDescriptionSchema,
+  windSchema,
 } from '../schemas';
 
 const sysSchema = z.object({

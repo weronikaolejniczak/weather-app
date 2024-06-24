@@ -1,9 +1,10 @@
-import { expect, afterEach, afterAll, beforeAll } from 'vitest';
-import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
+import { cleanup } from '@testing-library/react';
 
-import { server } from '@/mocks/node';
+import { afterAll, afterEach, beforeAll, expect } from 'vitest';
+
 import '@/mocks/match-media';
+import { server } from '@/mocks/node';
 
 expect.extend(matchers);
 

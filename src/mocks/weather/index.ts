@@ -1,11 +1,11 @@
-import { http, HttpResponse } from 'msw';
+import { HttpResponse, http } from 'msw';
 
 import { Endpoint } from '@/api/endpoints';
 
+import errorResponse404 from './error-response-404.json';
 import successBarcelona from './success-response-barcelona.json';
 import successParis from './success-response-paris.json';
 import successWarsaw from './success-response-warsaw.json';
-import errorResponse404 from './error-response-404.json';
 
 const MOCKS = {
   Barcelona: successBarcelona,

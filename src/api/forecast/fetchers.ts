@@ -3,6 +3,7 @@ import axios from 'axios';
 import { DEFAULT_UNIT } from '@/constants';
 
 import { Endpoint } from '../endpoints';
+
 import { forecastSchema } from './schemas';
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_MAP_API_KEY;

@@ -11,11 +11,12 @@ import {
   useState,
 } from 'react';
 
+import { cn } from '@/utils/cn';
+
 import { useClickOutside } from '@/hooks/use-click-outside';
 
 import { Input } from './input';
 import { Label } from './label';
-import { cn } from '@/utils/cn';
 
 interface ComboboxContextState {
   isShown: boolean;

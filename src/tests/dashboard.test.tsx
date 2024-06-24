@@ -1,3 +1,6 @@
+import { render, screen, within } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import {
   afterAll,
   afterEach,
@@ -7,8 +10,6 @@ import {
   test,
   vi,
 } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
 
 import { App } from '@/app';
 import { SAVED_CITIES_KEY } from '@/constants';

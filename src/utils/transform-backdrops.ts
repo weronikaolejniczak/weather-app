@@ -1,7 +1,6 @@
 import { WeatherCondition } from '../api/types';
-
-import { Theme } from '../constants/theme';
 import { BACKDROPS } from '../constants/backdrops';
+import { Theme } from '../constants/theme';
 
 type TransformedBackdrops = {
   [key in `${WeatherCondition}-${Theme}`]: string;

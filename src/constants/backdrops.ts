@@ -1,4 +1,5 @@
 import { WeatherCondition } from '../api/types';
+
 import { Theme } from './theme';
 
 export type Backdrop = {
