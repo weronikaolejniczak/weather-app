@@ -5,7 +5,7 @@ import { useWeather } from '@/api/weather';
 
 import { useDebounce } from '@/hooks/use-debounce';
 import { useInput } from '@/hooks/use-input';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import { useTheme } from '@/hooks/use-theme';
 
 import { capitalizeWords } from '@/utils/capitalize-words';
