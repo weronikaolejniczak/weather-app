@@ -5,6 +5,8 @@ import { useWeather } from '@/api/weather';
 
 import { useDebounce } from '@/hooks/use-debounce';
 import { useInput } from '@/hooks/use-input';
+import { useToast } from '@/components/ui/use-toast';
+import { useTheme } from '@/hooks/use-theme';
 
 import { capitalizeWords } from '@/utils/capitalize-words';
 import { cn } from '@/utils/cn';
@@ -15,8 +17,7 @@ import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 import { Combobox } from '@/components/ui/combobox';
 import { Logo } from '@/components/ui/logo';
 import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/components/ui/use-toast';
-import { useTheme } from '@/hooks/use-theme';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 import DropIcon from '@/assets/icons/drop.svg?react';
 import LoadingSpinner from '@/assets/icons/loading-spinner.svg?react';
@@ -32,7 +33,7 @@ export const Dashboard = () => {
   const toastId = useRef<string>('');
 
   const { dismiss, toast } = useToast();
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   const [searchQuery, handleSearchQueryChange, setSearchQuery] =
     useInput(DEFAULT_SEARCH_QUERY);
@@ -72,7 +73,10 @@ export const Dashboard = () => {
       )}
     >
       <div className="flex flex-col gap-8">
-        <Logo className="self-center" />
+        <div className="w-full flex justify-center items-center">
+          <Logo className="m-auto" />
+          <ThemeToggle value={theme} onClick={toggleTheme} />
+        </div>
         <Combobox>
           <Combobox.Label htmlFor="search-input" srOnly>
             Enter city

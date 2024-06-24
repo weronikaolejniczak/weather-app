@@ -27,5 +27,8 @@ export const useTheme = () => {
     }
   }, [theme, prefersDarkMode, setTheme]);
 
-  return { theme, setTheme };
+  const toggleTheme = () =>
+    setTheme((value) => (value === Theme.Dark ? Theme.Light : Theme.Dark));
+
+  return { theme, setTheme, toggleTheme };
 };
