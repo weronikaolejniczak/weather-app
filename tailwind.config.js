@@ -1,7 +1,8 @@
 /* v8 ignore start */
 const { transformBackdrops } = require('./src/utils/transform-backdrops');
+const { BACKDROPS } = require('./src/constants/backdrops');
 
-const backdrops = transformBackdrops();
+const backdrops = transformBackdrops(BACKDROPS);
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
