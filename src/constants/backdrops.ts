@@ -40,14 +40,14 @@ export const BACKDROPS: Backdrops = {
   },
   [WeatherCondition.ScatteredClouds]: {
     light: {
-      url: 'https://unsplash.com/photos/white-clouds-and-blue-sky-during-daytime-ROVBDer29PQ',
-      src: '/assets/backdrops/light/ritam-baishya-ROVBDer29PQ-unsplash.jpg',
-      author: 'Ritam Baishya',
+      url: 'https://unsplash.com/photos/a-large-field-with-a-sky-filled-with-clouds-DJqJy3k1mCA',
+      src: '/assets/backdrops/light/marco-bianchetti-DJqJy3k1mCA-unsplash.jpg',
+      author: 'Marco Bianchetti',
     },
     dark: {
-      url: 'https://unsplash.com/photos/photo-of-clouds-covering-the-sun-IUUoaVtL7NE',
-      src: '/assets/backdrops/dark/trevor-gerzen-IUUoaVtL7NE-unsplash.jpg',
-      author: 'Trevor Gerzen',
+      url: 'https://unsplash.com/photos/low-angle-photography-of-white-clouds-j9ncMni2Xhs',
+      src: '/assets/backdrops/dark/kym-mackinnon-j9ncMni2Xhs-unsplash.jpg',
+      author: 'Kym MacKinnon',
     },
   },
   [WeatherCondition.BrokenClouds]: {

@@ -68,7 +68,7 @@ export const Dashboard = () => {
   return (
     <div
       className={cn(
-        'min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-fixed',
+        'min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-center bg-no-repeat bg-fixed',
         weatherConditions?.backdrop[theme],
       )}
     >
