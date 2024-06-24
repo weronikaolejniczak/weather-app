@@ -1,7 +1,14 @@
+const { transformBackdrops } = require('./src/utils/transform-backdrops');
+
+const backdrops = transformBackdrops();
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
   content: ['./src/**/*.{ts,tsx}'],
+  safelist: {
+    pattern: /bg-([a-zA-Z]*)-(light|dark)/,
+  },
   prefix: '',
   theme: {
     extend: {
@@ -28,6 +35,7 @@ module.exports = {
         128: '27.5rem',
       },
       backgroundImage: {
+        ...backdrops,
         placeholder: "url('/assets/backdrops/placeholder.jpg')",
       },
     },

@@ -1,3 +1,5 @@
+import { WeatherConditionCode } from '@/api/types';
+
 import ClearSkyIcon from '@/assets/icons/clear-sky.svg?react';
 import FewCloudsIcon from '@/assets/icons/few-clouds.svg?react';
 import ScatteredCloudsIcon from '@/assets/icons/scattered-clouds.svg?react';
@@ -9,49 +11,52 @@ import SnowIcon from '@/assets/icons/snow.svg?react';
 import MistIcon from '@/assets/icons/mist.svg?react';
 
 const WEATHER_CONDIITON_MAP = {
-  '01': {
+  [WeatherConditionCode.ClearSky]: {
     icon: <ClearSkyIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-clearSky-light', dark: 'bg-clearSky-dark' },
     description: 'clear sky',
   },
-  '02': {
+  [WeatherConditionCode.FewClouds]: {
     icon: <FewCloudsIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-fewClouds-light', dark: 'bg-fewClouds-dark' },
     description: 'few clouds',
   },
-  '03': {
+  [WeatherConditionCode.ScatteredClouds]: {
     icon: <ScatteredCloudsIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: {
+      light: 'bg-scatteredClouds-light',
+      dark: 'bg-scatteredClouds-dark',
+    },
     description: 'scattered clouds',
   },
-  '04': {
+  [WeatherConditionCode.BrokenClouds]: {
     icon: <BrokenCloudsIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-brokenClouds-light', dark: 'bg-brokenClouds-dark' },
     description: 'broken clouds',
   },
-  '09': {
+  [WeatherConditionCode.ShowerRain]: {
     icon: <ShowerRainIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-showerRain-light', dark: 'bg-showerRain-dark' },
     description: 'shower rain',
   },
-  '10': {
+  [WeatherConditionCode.Rain]: {
     icon: <RainIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-rain-light', dark: 'bg-rain-dark' },
     description: 'rain',
   },
-  '11': {
+  [WeatherConditionCode.Thunderstorm]: {
     icon: <ThunderstormIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-thunderstorm-light', dark: 'bg-thunderstorm-dark' },
     description: 'thunderstorm',
   },
-  '13': {
+  [WeatherConditionCode.Snow]: {
     icon: <SnowIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-snow-light', dark: 'bg-snow-dark' },
     description: 'snow',
   },
-  '50': {
+  [WeatherConditionCode.Mist]: {
     icon: <MistIcon />,
-    backdrop: { light: { src: '', author: '' }, dark: { src: '', author: '' } },
+    backdrop: { light: 'bg-mist-light', dark: 'bg-mist-dark' },
     description: 'mist',
   },
 };

@@ -29,6 +29,7 @@ const SEARCH_DEBOUNCE_VALUE = 500;
 
 export const Dashboard = () => {
   const toastId = useRef<string>('');
+  const theme = 'light';
 
   const { dismiss, toast } = useToast();
 
@@ -66,7 +67,7 @@ export const Dashboard = () => {
     <div
       className={cn(
         'min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-fixed',
-        'bg-placeholder',
+        weatherConditions?.backdrop[theme],
       )}
     >
       <div className="flex flex-col gap-8">
