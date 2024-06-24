@@ -1,3 +1,4 @@
+/* v8 ignore start */
 const { transformBackdrops } = require('./src/utils/transform-backdrops');
 
 const backdrops = transformBackdrops();

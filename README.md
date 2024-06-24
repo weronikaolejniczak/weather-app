@@ -90,6 +90,8 @@ You can read more about env in Vite [here](https://vitejs.dev/guide/env-and-mode
 2. Next, write in the terminal: `pnpm test`
 3. Et voila! 🎉
 
+**Note:** You can generate coverage reports by running: `pnpm coverage`
+
 ### Run Storybook
 
 1. First, install dependencies: `pnpm install`
