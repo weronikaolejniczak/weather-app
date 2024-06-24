@@ -98,7 +98,7 @@ const ComboboxList = ({ id, label, children }: ComboboxListProps) => {
   return (
     <ul
       className={cn(
-        'absolute z-10 max-h-36 w-full p-2 flex flex-col gap-2 bg-white rounded-lg overflow-y-auto',
+        'absolute z-10 max-h-36 w-full p-2 flex flex-col gap-2 bg-white dark:bg-neutral-800 rounded-lg overflow-y-auto',
         isSrOnlyLabel ? 'top-14' : 'top-18',
       )}
       id={id}
@@ -127,7 +127,7 @@ const ComboboxOption = ({ children, onClick, value }: ComboboxOptionProps) => {
   return (
     <li key={value} role="option">
       <button
-        className="text-left w-full px-4 py-3 hover:bg-neutral-100 rounded-lg"
+        className="text-left w-full px-4 py-3 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
         onClick={handleClick}
       >
         {children}

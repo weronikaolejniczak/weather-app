@@ -8,7 +8,7 @@ const Logo = ({ className }: Props) => {
   return (
     <div
       className={cn(
-        'border border-black/100 text-4xl uppercase w-fit px-6 py-2',
+        'border border-black/100 dark:border-white text-4xl uppercase w-fit px-6 py-2',
         className,
       )}
     >

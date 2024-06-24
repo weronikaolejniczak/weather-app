@@ -16,6 +16,7 @@ import { Combobox } from '@/components/ui/combobox';
 import { Logo } from '@/components/ui/logo';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
+import { useTheme } from '@/hooks/use-theme';
 
 import DropIcon from '@/assets/icons/drop.svg?react';
 import LoadingSpinner from '@/assets/icons/loading-spinner.svg?react';
@@ -29,9 +30,9 @@ const SEARCH_DEBOUNCE_VALUE = 500;
 
 export const Dashboard = () => {
   const toastId = useRef<string>('');
-  const theme = 'light';
 
   const { dismiss, toast } = useToast();
+  const { theme } = useTheme();
 
   const [searchQuery, handleSearchQueryChange, setSearchQuery] =
     useInput(DEFAULT_SEARCH_QUERY);
@@ -130,7 +131,7 @@ export const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="w-full flex flex-1 flex-col gap-6 p-4 backdrop-blur-2xl bg-white bg-opacity-20 rounded-t-lg">
+      <div className="w-full flex flex-1 flex-col gap-6 p-4 backdrop-blur-2xl bg-white bg-opacity-20 dark:bg-black dark:bg-opacity-20 rounded-t-lg">
         {weather && (
           <div className="flex flex-col gap-6">
             <h3 className="self-center uppercase text-base font-medium">
