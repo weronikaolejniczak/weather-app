@@ -70,12 +70,12 @@ export const Dashboard = () => {
   return (
     <div
       className={cn(
-        'min-h-screen w-full px-6 pt-6 flex flex-col gap-12 bg-cover bg-center bg-no-repeat bg-fixed',
+        'flex min-h-screen w-full flex-col gap-12 bg-cover bg-fixed bg-center bg-no-repeat px-6 pt-6',
         weatherConditions?.backdrop[theme],
       )}
     >
       <div className="flex flex-col gap-8">
-        <div className="w-full flex justify-center items-center">
+        <div className="flex w-full items-center justify-center">
           <Logo className="m-auto" />
           <ThemeToggle value={theme} onClick={toggleTheme} />
         </div>
@@ -120,7 +120,7 @@ export const Dashboard = () => {
           )}
         </Combobox>
       </div>
-      <div className="w-full flex justify-center gap-4">
+      <div className="flex w-full justify-center gap-4">
         {weather && (
           <div className="flex items-center">
             {weatherConditions && <span>{weatherConditions.icon}</span>}
@@ -137,10 +137,10 @@ export const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="w-full flex flex-1 flex-col gap-6 p-4 backdrop-blur-2xl bg-white bg-opacity-20 dark:bg-black dark:bg-opacity-20 rounded-t-lg">
+      <div className="flex w-full flex-1 flex-col gap-6 rounded-t-lg bg-white bg-opacity-20 p-4 backdrop-blur-2xl dark:bg-black dark:bg-opacity-20">
         {weather && (
           <div className="flex flex-col gap-6">
-            <h3 className="self-center uppercase text-base font-medium">
+            <h3 className="self-center text-base font-medium uppercase">
               {weather.weather[0].description}
             </h3>
             <Table>

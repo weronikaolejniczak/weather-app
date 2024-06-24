@@ -49,7 +49,7 @@ const Combobox = ({ children }: ComboboxProps) => {
     <ComboboxContext.Provider
       value={{ isShown, setIsShown, isSrOnlyLabel, setIsSrOnlyLabel }}
     >
-      <div ref={ref} className="relative group">
+      <div ref={ref} className="group relative">
         {children}
       </div>
     </ComboboxContext.Provider>
@@ -98,7 +98,7 @@ const ComboboxList = ({ id, label, children }: ComboboxListProps) => {
   return (
     <ul
       className={cn(
-        'absolute z-10 max-h-36 w-full p-2 flex flex-col gap-2 bg-white dark:bg-neutral-800 rounded-lg overflow-y-auto',
+        'absolute z-10 flex max-h-36 w-full flex-col gap-2 overflow-y-auto rounded-lg bg-white p-2 dark:bg-neutral-800',
         isSrOnlyLabel ? 'top-14' : 'top-18',
       )}
       id={id}
@@ -127,7 +127,7 @@ const ComboboxOption = ({ children, onClick, value }: ComboboxOptionProps) => {
   return (
     <li key={value} role="option">
       <button
-        className="text-left w-full px-4 py-3 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+        className="w-full rounded-lg bg-white px-4 py-3 text-left hover:bg-neutral-100 dark:bg-neutral-800 dark:hover:bg-neutral-700"
         onClick={handleClick}
       >
         {children}

@@ -16,7 +16,7 @@ interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
 
 const ListItem = ({ children, className }: ListItemProps) => {
   return (
-    <li className={cn('py-1 px-2 flex gap-4 items-center', className)}>
+    <li className={cn('flex items-center gap-4 px-2 py-1', className)}>
       {children}
     </li>
   );
@@ -36,7 +36,7 @@ interface ListItemContentProps extends HTMLAttributes<HTMLSpanElement> {
 
 const ListItemContent = ({ children, className }: ListItemContentProps) => {
   return (
-    <div className={cn('flex flex-col flex-1', className)}>{children}</div>
+    <div className={cn('flex flex-1 flex-col', className)}>{children}</div>
   );
 };
 

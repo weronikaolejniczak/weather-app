@@ -32,7 +32,7 @@ interface TableHeadProps extends HTMLAttributes<HTMLTableColElement> {
 
 const TableHead = ({ children, className }: TableHeadProps) => {
   return (
-    <th className={cn('text-lg font-normal text-left', className)}>
+    <th className={cn('text-left text-lg font-normal', className)}>
       {children}
     </th>
   );
