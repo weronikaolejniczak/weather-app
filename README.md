@@ -5,7 +5,7 @@ The app fetches the data from a public weather API and displays it in a user-fri
 
 [Hosted with Vercel](https://weather-app-lake-ten-91.vercel.app/)
 
-![Collage](demo\readme-collage.png)
+![Collage](./demo/readme-collage.png)
 
 ## Overview
 
@@ -89,6 +89,7 @@ You can read more about env in Vite [here](https://vitejs.dev/guide/env-and-mode
 3. Et voila! 🎉
 
 **Note:** You can run the tests in [Vitest UI](https://vitest.dev/guide/ui) by running: `pnpm test:ui`
+
 **Note:** You can generate coverage reports by running: `pnpm coverage`
 
 ### Run Storybook
