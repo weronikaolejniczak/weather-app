@@ -13,6 +13,7 @@ import {
 
 import { App } from '@/app';
 import { SAVED_CITIES_KEY } from '@/constants';
+import { TestProviders } from '@/providers';
 
 describe('Dashboard', () => {
   beforeEach(() => {
@@ -36,7 +37,11 @@ describe('Dashboard', () => {
    * THEN I will see correct information about the city
    */
   test('WHEN I enter an existing city in the search input THEN I will see the correct information about the city', async () => {
-    render(<App />);
+    render(
+      <TestProviders>
+        <App />
+      </TestProviders>,
+    );
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
 
@@ -59,7 +64,11 @@ describe('Dashboard', () => {
    * AND the previous data will be kept
    */
   test('WHEN I enter a non-existing city in the search input THEN I will see an error toast AND the previous data will be kept', async () => {
-    render(<App />);
+    render(
+      <TestProviders>
+        <App />
+      </TestProviders>,
+    );
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
     const barcelonaTitle = await screen.findByText(/barcelona/i);
@@ -67,7 +76,7 @@ describe('Dashboard', () => {
     userEvent.clear(searchInput);
     userEvent.type(searchInput, 'A non-existing city');
 
-    const toast = await screen.findByText('city not found');
+    const toast = await screen.findByText(/this city doesn't exist!/i);
 
     expect(barcelonaTitle).toBeInTheDocument();
     expect(toast).toBeInTheDocument();
@@ -80,7 +89,11 @@ describe('Dashboard', () => {
    * THEN I will not see any autocomplete suggestions
    */
   test('WHEN I focus the search input THEN I will not see any autocomplete suggestions', async () => {
-    render(<App />);
+    render(
+      <TestProviders>
+        <App />
+      </TestProviders>,
+    );
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
 
@@ -102,7 +115,11 @@ describe('Dashboard', () => {
   test('WHEN I focus the search input THEN I will see a list of autocomplete suggestions with the city names I have entered before', async () => {
     localStorage.setItem(SAVED_CITIES_KEY, `["barcelona", "paris", "warsaw"]`);
 
-    render(<App />);
+    render(
+      <TestProviders>
+        <App />
+      </TestProviders>,
+    );
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
 
@@ -137,7 +154,11 @@ describe('Dashboard', () => {
   test('WHEN I focus the search input AND I click on an item from the autocomplete suggestions THEN I will see the correct information about that city', async () => {
     localStorage.setItem(SAVED_CITIES_KEY, `["paris", "warsaw"]`);
 
-    render(<App />);
+    render(
+      <TestProviders>
+        <App />
+      </TestProviders>,
+    );
 
     const searchInput = await screen.findByRole('textbox', { name: /city/i });
 
