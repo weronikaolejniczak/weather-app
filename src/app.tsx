@@ -1,8 +1,5 @@
 import 'react';
 
-import '@radix-ui/react-label';
-
-import '@/constants';
 import { Providers } from '@/providers';
 
 import { Dashboard } from '@/pages/dashboard';
