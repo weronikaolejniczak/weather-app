@@ -15,6 +15,7 @@ import { formatHour } from '@/utils/format-hour';
 import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 
 import { Combobox } from '@/components/ui/combobox';
+import { List } from '@/components/ui/list';
 import { Logo } from '@/components/ui/logo';
 import { Separator } from '@/components/ui/separator';
 import { Table } from '@/components/ui/table';
@@ -177,19 +178,30 @@ export const Dashboard = () => {
           </div>
         )}
         <Separator />
-        {!!forecast?.list.length &&
-          forecast?.list.map(({ dt_txt, weather, main }) => (
-            <div key={dt_txt} className="py-1 px-2 flex gap-4 items-center">
-              <span>{getWeatherConditionData(weather[0].icon).icon}</span>
-              <div className="flex flex-col flex-1">
-                <span className="text-lg">{formatHour(new Date(dt_txt))}</span>
-                <span className="text-lg">{weather[0].description}</span>
-              </div>
-              <div className="text-2xl">
-                {Math.floor(main.temp)}°<span className="text-lg">C</span>
-              </div>
-            </div>
-          ))}
+        {!!forecast?.list.length && (
+          <List>
+            {forecast?.list.map(({ dt_txt, weather, main }) => (
+              <List.Item key={dt_txt}>
+                <List.Item.Leading>
+                  {getWeatherConditionData(weather[0].icon).icon}
+                </List.Item.Leading>
+                <List.Item.Content>
+                  <List.Item.Title>
+                    {formatHour(new Date(dt_txt))}
+                  </List.Item.Title>
+                  <List.Item.Description>
+                    {weather[0].description}
+                  </List.Item.Description>
+                </List.Item.Content>
+                <List.Item.Trailing>
+                  <span className="text-2xl">
+                    {Math.floor(main.temp)}°<span className="text-lg">C</span>
+                  </span>
+                </List.Item.Trailing>
+              </List.Item>
+            ))}
+          </List>
+        )}
       </div>
     </div>
   );
