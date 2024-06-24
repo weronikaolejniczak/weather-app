@@ -138,7 +138,7 @@ export const Dashboard = () => {
           <div className="flex flex-col gap-1 pl-4 lg:gap-2">
             <h1 className="text-3xl lg:text-6xl">{weather?.name}</h1>
             <span className="text-sm lg:text-lg">
-              {weather?.dt && <p>{formatDate(new Date(weather?.dt))}</p>}
+              {weather?.dt && <p>{formatDate(new Date(weather?.dt * 1000))}</p>}
             </span>
           </div>
         </div>

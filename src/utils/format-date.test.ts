@@ -4,6 +4,12 @@ import { describe, expect, it } from 'vitest';
 import { formatDate } from './format-date';
 
 describe('Format date utility', () => {
+  it('Should return a string "20:09 Monday, 24 June 24" when passing a date of epoch value `1719252541000`', () => {
+    expect(formatDate(new Date(1719252541000))).toBe(
+      '20:09 Monday, 24 June 24',
+    );
+  });
+
   it('Should return a string "19:49 Monday, 17 June 24" when passing a date of epoch value `1718646542930`', () => {
     expect(formatDate(new Date(1718646542930))).toBe(
       '19:49 Monday, 17 June 24',
