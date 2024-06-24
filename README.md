@@ -36,7 +36,7 @@ Hosted with GitHub Pages: [url]
 
 - The app is **responsive** on the desktop, tablet and mobile devices.
 - The app is **accessible**, all interactive elements are announced by the screen reader correctly and the app is traversable by the keyboard.
-- The app is (almost) **pixel-perfect**, styled according to the provided Figma.
+- The app is **NOT pixel-perfect**, although styled according to the provided Figma. I preferred to focus on the functionality as opposed to getting the design details just right.
 - Errors have been handled in a meaningful way, considering the API documentation.
 - The project was built with a component-driven approach using Storybook.
 - Tests have been written following the TDD and BDD approach. GWT are written next to test cases.
@@ -54,7 +54,8 @@ Hosted with GitHub Pages: [url]
 - I fetch the main weather data from the endpoint mentioned in the requirements: `https://api.openweathermap.org/data/2.5/weather` which doesn't return a forecast. So I call another endpoint to get it (3-hour for 5 days; hourly forecast is a Pro feature of OpenWeatherMap): `https://api.openweathermap.org/data/2.5/forecast`. In normal circumstances, I would negotiate using only the `/forecast` endpoint to show all data but for the recruitment challenge I preferred to follow the requirements.
 - E2E tests using Cypress, Playwright. For this application, especially since I do not own the back-end, unit and integration tests with mocked endpoints are enough.
 - I tried to follow Figma as closely as possible with some exceptions in responsitivity (like the sticky header on mobile) to save on time. I focused on implementing more functionalities over implementing them in detail to showcase versatility. In real circumstances or if I had more time, I would go for a pixel-perfect design.
-- I would add stories for all UI components to showcase the building component library and its usage. I decided to make Combobox an exemplary case because it's a component written by me using composition pattern and Context API.
+- I would add stories for all UI components to showcase the building component library and its usage. I decided to make Combobox an exemplary case because it's a component written by me using composition pattern and Context API. Source: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-none/
+- I would try to add internalisation as soon as possible. It takes seconds to use it but almost all apps end up getting translated when scaling. I've worked with `react-i18next`, `react-intl` and custom in-house solution integrated with Lokalise.
 
 ## How to run
 
