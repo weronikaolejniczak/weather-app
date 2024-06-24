@@ -17,6 +17,7 @@ import { getWeatherConditionData } from '@/utils/get-weather-condition-data';
 import { Combobox } from '@/components/ui/combobox';
 import { Logo } from '@/components/ui/logo';
 import { Separator } from '@/components/ui/separator';
+import { Table } from '@/components/ui/table';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 import DropIcon from '@/assets/icons/drop.svg?react';
@@ -141,40 +142,38 @@ export const Dashboard = () => {
             <h3 className="self-center uppercase text-base font-medium">
               {weather.weather[0].description}
             </h3>
-            <div className="flex justify-between">
-              <span className="text-lg">Max</span>
-              <div className="flex gap-2 items-center">
-                <span className="text-lg">
-                  {Math.floor(weather?.main.temp_max)}°C
-                </span>
-                <TempMaxIcon />
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-lg">Min</span>
-              <div className="flex gap-2 items-center">
-                <span className="text-lg">
-                  {Math.floor(weather?.main.temp_min)}°C
-                </span>
-                <TempMinIcon />
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-lg">Humidity</span>
-              <div className="flex gap-2 items-center">
-                <span className="text-lg">{weather?.main.humidity}%</span>
-                <DropIcon />
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-lg">Wind</span>
-              <div className="flex gap-2 items-center">
-                <span className="text-lg">
-                  {Math.floor(weather?.wind.speed)}km/h
-                </span>
-                <WindIcon />
-              </div>
-            </div>
+            <Table>
+              <Table.Body>
+                <Table.Row>
+                  <Table.Head>Max</Table.Head>
+                  <Table.Cell>
+                    {Math.floor(weather?.main.temp_max)}°C
+                    <TempMaxIcon />
+                  </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Head>Min</Table.Head>
+                  <Table.Cell>
+                    {Math.floor(weather?.main.temp_min)}°C
+                    <TempMinIcon />
+                  </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Head>Humidity</Table.Head>
+                  <Table.Cell>
+                    {weather?.main.humidity}%
+                    <DropIcon />
+                  </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Head>Wind</Table.Head>
+                  <Table.Cell>
+                    {Math.floor(weather?.wind.speed)}km/h
+                    <WindIcon />
+                  </Table.Cell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
           </div>
         )}
         <Separator />
