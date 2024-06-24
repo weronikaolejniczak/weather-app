@@ -73,7 +73,7 @@ export const Dashboard = () => {
     <div
       className={cn(
         'flex min-h-screen w-full flex-col justify-center lg:flex-row gap-12 lg:gap-24 lg:px-12 lg:pt-12 bg-cover bg-fixed bg-center bg-no-repeat px-6 pt-6',
-        weatherConditions?.backdrop[theme],
+        weatherConditions?.backdrop.className[theme],
       )}
     >
       <header className="flex flex-col grow lg:max-w-2xl gap-12 lg:mt-24">
@@ -142,6 +142,19 @@ export const Dashboard = () => {
             </span>
           </div>
         </div>
+        {weatherConditions && (
+          <div className="w-full flex gap-2 text-lg self-end">
+            <span className="font-semibold">Photo:</span>
+            <span>{weatherConditions.backdrop.data[theme].author}</span>
+            <a
+              className="hover:text-blue-500"
+              href={weatherConditions.backdrop.data[theme].url}
+              target="_blank"
+            >
+              @ Unsplash
+            </a>
+          </div>
+        )}
       </header>
       <div className="flex w-full flex-1 flex-col gap-6 min-w-80 lg:max-w-xl rounded-t-lg bg-white bg-opacity-20 p-4 backdrop-blur-2xl dark:bg-black dark:bg-opacity-20">
         {weather && (
